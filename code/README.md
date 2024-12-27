@@ -1,4 +1,4 @@
-# Covert Storage Channel Exploiting Protocol Field Manipulation Using QR Flag in DNS
+# Covert Storage Channel that exploits Protocol Field Manipulation using QR Flag field in DNS [Code: CSC-PSV-DNS-QRF]
 
 We implemented a covert channel utilizing the DNS headers in packets. For this purpose, we used the **QR flag field** in the DNS header, which is only one bit long. 
 
