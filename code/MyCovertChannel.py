@@ -20,9 +20,10 @@ class MyCovertChannel(CovertChannelBase):
         - In this function, you are expected to create a random message (using function/s in CovertChannelBase) and send it to the receiver container. 
         - This implementation sends the length of the message first and then the actual message, bit by bit.
         """
-        binary_message = self.generate_random_binary_message_with_logging(log_file_name, 2, 2)
+        binary_message = self.generate_random_binary_message_with_logging(log_file_name)
         counter = True
         #make the class variable start to be able to calculate the time
+        #start_time = time.time() #make this seconds
         for i,current_bit in enumerate(binary_message):
             if counter:  
                 if current_bit == '1':
@@ -40,6 +41,9 @@ class MyCovertChannel(CovertChannelBase):
             packet = IP(src = source_ip, dst=destination_ip, id = i) / UDP(dport=53) / DNS(qr=qr_flag, qd=DNSQR(qname="google.com"))
             print("Sending: " + str(qr_flag)) 
             send(packet)
+        #end_time = time.time()
+        #print("Time taken to send the message: " + str(end_time - start_time) + " seconds")
+        #print("Utilized bandwidth: " + str(128/(end_time - start_time)) + " bits/second")
 
     def receive(self, log_file_name, parameter1, parameter2):
         received_message = ''
